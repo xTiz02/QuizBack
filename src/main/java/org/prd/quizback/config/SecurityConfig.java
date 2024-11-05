@@ -26,6 +26,7 @@ public class SecurityConfig implements Filter{
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         logger.info("Se realizo una peticion a la api: " + ((HttpServletRequest) req).getRequestURI());
+        System.out.println("Se realizo una peticion a la api: " + ((HttpServletRequest) req).getRequestURI());
         /*HttpServletResponse response= (HttpServletResponse) res;
         HttpServletRequest request= (HttpServletRequest) req;
         String origin = request.getHeader("origin");
