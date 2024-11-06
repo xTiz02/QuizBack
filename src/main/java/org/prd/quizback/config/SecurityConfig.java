@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/*@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)*/
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class SecurityConfig implements Filter{
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(SecurityConfig.class);
     @Override
@@ -34,7 +34,7 @@ public class SecurityConfig implements Filter{
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH"); //permite que el navegador acceda a los metodos
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Max-Age", "3600"); //3600 segundos de cache, es decir que se guarda la respuesta en el navegador por 3600 segundos
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {//si el metodo es options se devuelve un ok
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
             filterChain.doFilter(req, res);
