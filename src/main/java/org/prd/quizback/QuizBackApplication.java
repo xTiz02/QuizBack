@@ -24,7 +24,7 @@ public class QuizBackApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*WebClient client = WebClient.create("http://localhost:8085/sse");
+        WebClient client = WebClient.create("https://quizback-590131019426.us-central1.run.app/sse");
         ParameterizedTypeReference<ServerSentEvent<String>> type
                 = new ParameterizedTypeReference<ServerSentEvent<String>>() {};
 
@@ -40,7 +40,7 @@ public class QuizBackApplication implements CommandLineRunner {
                 () -> logger.info("Completed!!!"));
 
 
-        WebClient client2 = WebClient.create("http://localhost:8085/sse");
+        /*WebClient client2 = WebClient.create("http://localhost:8085/sse");
         ParameterizedTypeReference<ServerSentEvent<String>> type2
                 = new ParameterizedTypeReference<ServerSentEvent<String>>() {};
 

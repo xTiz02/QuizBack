@@ -27,7 +27,7 @@ public class SecurityConfig implements Filter{
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         logger.info("Se realizo una peticion a la api: " + ((HttpServletRequest) req).getRequestURI());
 
-        /*HttpServletResponse response= (HttpServletResponse) res;
+        HttpServletResponse response= (HttpServletResponse) res;
         HttpServletRequest request= (HttpServletRequest) req;
         String origin = request.getHeader("origin");
         response.setHeader("Access-Control-Allow-Origin", origin);
@@ -38,7 +38,7 @@ public class SecurityConfig implements Filter{
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
             filterChain.doFilter(req, res);
-        }*/
+        }
     }
 
     @Override

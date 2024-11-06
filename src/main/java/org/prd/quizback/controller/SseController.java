@@ -20,6 +20,11 @@ public class SseController {
         this.roomService = salaService;
     }
 
+    @GetMapping("/hellCheck")
+    public String hellCheck(){
+        return "SseController is working";
+    }
+
     @GetMapping(value = "/{salaId}/stream")
     public Flux<ServerSentEvent<PromptRespDto>> streamRoomsEvents(@PathVariable String salaId) {
         //cuando se envia el mensaje se envia a todos los suscriptores y luego se debe eliminar el sink}

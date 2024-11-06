@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RoomService {
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(RoomService.class);
     private final Map<String, Sinks.Many<PromptRespDto>> rooms = new ConcurrentHashMap<>();
-    private final Map<String, AtomicInteger> countConnections = new ConcurrentHashMap<>();
 
     public void publicEvent(String salaId, PromptRespDto mensaje) {
         //Crea un nuevo Sinks.Many si no existe para la sala y no guarda los mensajes, solo los envía a los suscriptores.
@@ -57,7 +56,7 @@ public class RoomService {
                 })
                 .doOnComplete(() -> {
                     //esto se ejecuta cuando se completa la conexión a la sala y se envia el evento complete al cliente que se conecto a la sala, para que cierre la conexión
-                    logger.error("OnComplete Se completó la conexión a la sala (para cada)" + roomId);
+                    logger.info("OnComplete Se completó la conexión a la sala (para cada)" + roomId);
                 })
                 .map(data -> {
                     logger.info("Enviando evento a sala " + roomId);
@@ -71,7 +70,7 @@ public class RoomService {
     private void checkAndDeleteRoom(String roomId) {
         Sinks.Many<PromptRespDto> sink = rooms.get(roomId);
         logger.info("Verificando si hay suscriptores en la sala:" + sink.currentSubscriberCount());
-        if (sink != null && sink.currentSubscriberCount()-1 == 0) {
+        if (sink.currentSubscriberCount() - 1 == 0) {
             logger.info("No hay más suscriptores en la sala " + roomId + ", eliminando evento.");
             deleteRoomEvent(roomId);
         }
@@ -88,8 +87,5 @@ public class RoomService {
         }
     }
 
-    public int getCountConnectionByRoom(String salaId) {
-        return countConnections.getOrDefault(salaId, new AtomicInteger(0)).get();
-    }
 
 }
