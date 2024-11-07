@@ -24,7 +24,7 @@ public class QuizBackApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        WebClient client = WebClient.create("https://quizback-590131019426.us-central1.run.app/sse");
+        /*WebClient client = WebClient.create("https://quizback-590131019426.us-central1.run.app/sse");
         ParameterizedTypeReference<ServerSentEvent<String>> type
                 = new ParameterizedTypeReference<ServerSentEvent<String>>() {};
 
@@ -37,7 +37,7 @@ public class QuizBackApplication implements CommandLineRunner {
                 content -> logger.info("USER 1 Time: {} - event: name[{}], id [{}], content[{}] ",
                         LocalTime.now(), content.event(), content.id(), content.data()),
                 error -> logger.error("Error receiving SSE: {}", error),
-                () -> logger.info("Completed!!!"));
+                () -> logger.info("Completed!!!"));*/
 
 
         /*WebClient client2 = WebClient.create("http://localhost:8085/sse");
